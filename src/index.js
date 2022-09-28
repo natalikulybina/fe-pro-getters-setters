@@ -7,6 +7,7 @@ function Student(name, grades) {
       return this.grades.reduce((acc, curr) => acc + curr) / this.grades.length;
     },
   });
+  
 }
 
 export const school = {
@@ -20,4 +21,41 @@ export const school = {
     6: new Student('Eugene', [97, 34, 78, 85, 98, 65]),
     7: new Student('Ivan', [76, 89, 78, 98, 98, 99, 89, 96]),
   },
-};
+  
+  get aGradeStudents() {
+    const aGrade = Object.values(this.students)
+      .filter((students) => students.averageGrade <= 100 && students.averageGrade >= 90)
+      .map((students) => students.name)
+      .join(', ');
+
+    return aGrade;
+  },
+
+  get bGradeStudents() {
+    const bGrade = Object.values(this.students)
+      .filter((students) => students.averageGrade < 90 && students.averageGrade >= 75)
+      .map((students) => students.name)
+      .join(', ');
+
+    return bGrade;
+  },
+
+  get cGradeStudents() {
+    const cGrade = Object.values(this.students)
+      .filter((students) => students.averageGrade < 75 && students.averageGrade >= 60)
+      .map((students) => students.name)
+      .join(', ');
+
+    return cGrade;
+  },
+
+  get dGradeStudents() {
+    const dGrade = Object.values(this.students)
+      .filter((students) => students.averageGrade < 60 && students.averageGrade >= 0)
+      .map((students) => students.name)
+      .join(', ');
+
+    return dGrade;
+  },
+
+}; 
